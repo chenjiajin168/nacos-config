@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: son
+  cloud:
+#    config:
+#      override-none: true
+    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:80
+      config:
+        server-addr: 127.0.0.1:8848     # nacos中心地址  (需要提前开启zookeeper服务)
+#        server-addr: 127.0.0.1:80
+        file-extension: yaml            # 配置文件格式  (对应配置中心的文件格式)
+        group: CONFIG_DEMO              # 分组名称 ,默认是DEFAULT_GROUP
+        shared-configs: # 配置要引入的配置
+          - data-id: a.yaml          # 对应引入的配置名称
+            refresh: true            # 动态刷新
+            group: CONFIG_DEMO       # 分组名称 ,默认是DEFAULT_GROUP
+  profiles:
+#    active: dev                         # 环境标识  (将决定使用的是配置中心的哪一个配置文件)
+    active: test
